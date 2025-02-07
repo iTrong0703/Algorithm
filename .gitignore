@@ -1,0 +1,5 @@
+*.cph
+bin/
+obj/
+*.csproj
+*.sln
