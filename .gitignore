@@ -1,4 +1,5 @@
 *.cph
+*.cphcsrun
 bin/
 obj/
 *.csproj
