@@ -1,28 +1,50 @@
 ﻿class Solution
 {
-    public bool IsPalindrome(int x) 
+    public bool IsPalindrome2(int x)
     {
-        List<int> lst = new List<int>();
-        if (x < 0) {
-            x = Math.Abs(x);
-            while (x != 0) {
-                lst.Add(x % 10);
-                x /= 10;
-            }
-            lst[0] *= -1;
+        if (x < 0)
+        {
+            return false;
         }
-        else {
-            while (x != 0) {
-                lst.Add(x % 10);
-                x /= 10;
-            }
+        int defaultX = x;
+        int reverseX = 0;
+        while (x != 0)
+        {
+            reverseX = reverseX * 10 + (x % 10);
+            x /= 10;
         }
-        
-        if (lst.Count() > 1 && lst[0].Equals(lst.Last()))
+        if (reverseX == defaultX)
         {
             return true;
         }
         return false;
+    }
+    public bool IsPalindrome1(int x) 
+    {
+        if (x < 0)
+        {
+            return false;
+        }
+        if (x >= 0 && x < 10) {
+            return true;
+        }
+        List<int> lst = new List<int>();
+        while (x != 0) {
+            lst.Add(x % 10);
+            x /= 10;
+        }
+        int left = 0;
+        int right = lst.Count - 1;
+        while (left < right) 
+        {
+            if (!lst[left].Equals(lst[right]))
+            {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
     static void Main(string[] args)
     {
@@ -30,7 +52,7 @@
         {
             int x = int.Parse(Console.ReadLine());
             Solution s = new Solution();
-            var result = s.IsPalindrome(x);
+            var result = s.IsPalindrome2(x);
             System.Console.WriteLine(result);
         }
         catch (Exception ex)

@@ -1,6 +1,25 @@
 ﻿class Solution
 {
-    public bool IsPalindrome(int x) 
+    public bool IsPalindrome2(int x) // cách 2 là đảo số ban đầu lại vd 123 -> 321 rồi so sánh
+    {
+        if (x < 0)
+        {
+            return false;
+        }
+        int defaultX = x;
+        int reverseX = 0;
+        while (x != 0)
+        {
+            reverseX = reverseX * 10 + (x % 10);
+            x /= 10;
+        }
+        if (reverseX == defaultX)
+        {
+            return true;
+        }
+        return false;
+    }
+    public bool IsPalindrome1(int x)  // cách 1 là tách số ra rồi so sánh 2 đầu
     {
         if (x < 0)
         {
@@ -33,7 +52,7 @@
         {
             int x = int.Parse(Console.ReadLine());
             Solution s = new Solution();
-            var result = s.IsPalindrome(x);
+            var result = s.IsPalindrome2(x);
             System.Console.WriteLine(result);
         }
         catch (Exception ex)
